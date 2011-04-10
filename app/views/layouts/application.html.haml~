@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title
+      HoPACT App
+    = csrf_meta_tag
+    = render 'layouts/stylesheets'
+  %body.bp.two-col
+    #container
+      = render 'layouts/header'
+      %section
+        - flash.each do |key, value|
+          %div{:class => "flash #{key}"}= value
+        = yield
+      = render 'layouts/footer'

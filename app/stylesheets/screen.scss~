@@ -10,8 +10,11 @@
 // Import the non-default scaffolding module.
 @import "blueprint/scaffolding";
 
+// Import formtastic module
+@import "formtastic/formtastic_base";
+
 // To generate css equivalent to the blueprint css but with your
-// configuration applied, uncomment:
+// configuration appslied, uncomment:
 // @include blueprint
 
 // But Compass recommends that you scope your blueprint styles
@@ -35,6 +38,37 @@
   -webkit-border-radius: 5px;
 }
 
+form {
+  @include bold-labels;
+}
+
+.stack {
+  @include stack-form(100%,92%,3%);
+  &.buttons-right {
+    @include stack-form(100%,92%,3%,"buttons-right"); }
+}
+
+.float-left {
+  @include float-form-left(100%,20%,72%,2%);
+  &.buttons-right {
+    @include float-form-left(100%,20%,72%,2%,"buttons-right"); }
+}
+
+
+.float-right {
+  @include float-form-right(100%,20%,72%,2%); 
+  &.buttons-right {
+    @include float-form-right(100%,20%,72%,2%,"buttons-right"); }
+}
+
+.float-right, .float-left, .stack {
+  &.input-float {
+    @include float-inputs; }
+  &.input-grid {
+    @include grid-inputs(200px); }
+}
+
+
 body.bp {
   @include blueprint-typography(true);
   @include blueprint-utilities;
@@ -49,7 +83,7 @@ form.bp {
   
 header {
   // background: transparent url('../images/header.png') 0 0 no-repeat;
-  height:120px;
+//  height:120px;
   min-height:120px;
   margin: 30px 0px 0px 0px;
 }
@@ -70,7 +104,9 @@ header {
 }
 
 footer {
-  background: url('../images/footer_new.png') 0 0 no-repeat;
+//  background: url('../images/footer_new.png') 0 0 no-repeat;
+
+  margin: 1em 0 0 0;
   height:67px;
   min-height:30px;
   text-align:center;
@@ -97,6 +133,10 @@ body.two-col {
   $nav-columns: ceil(2 * $blueprint-grid-columns / 3 - 1);
   // true means it's the last column in the row
   @include column($nav-columns, true);
+
+  // 5px rounded border
+  @include rounded;
+  
   background: #000305;
 	font-size: 1.143em;
 	height: 40px;
@@ -110,9 +150,6 @@ body.two-col {
 
   //width: $navbar-width;
   //border-bottom: 2px solid $navbar-color;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   
   a:link, a:visited {
     color: #fff;
@@ -147,6 +184,13 @@ body.two-col {
     $content-columns: ceil(3 * $blueprint-grid-columns / 3);
     // true means it's the last column in the row
     @include column($content-columns, true);
+    // border radius rounding
     @include rounded; 
-    background-color: white;  
+    background-color: white;
+    // No floating elements allowed on either the left or the right side
+    clear: both;
+    // content box shadow
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
     } }

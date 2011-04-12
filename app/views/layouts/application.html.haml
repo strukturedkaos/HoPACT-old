@@ -7,9 +7,11 @@
     = render 'layouts/stylesheets'
   %body.bp.two-col
     #container
-      = render 'layouts/header'
+      %header
+        = render 'layouts/header'
       %section
         - flash.each do |key, value|
           %div{:class => "flash #{key}"}= value
         = yield
-      = render 'layouts/footer'
+      %footer
+        = render 'layouts/footer'

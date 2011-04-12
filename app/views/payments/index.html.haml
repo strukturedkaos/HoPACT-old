@@ -1,0 +1,16 @@
+#content
+  %h1= @title
+  %hr
+  - semantic_form_for "payment", :remote=>true, do |form|
+    - form.inputs do
+      = form.input :total_home_cost
+      = form.input :property_tax_rate
+      = form.input :home_insurance_rate    
+      = form.input :loan_length
+      = form.input :down_payment
+      = form.input :annual_income
+    - form.buttons do
+      = form.commit_button
+    
+    
+

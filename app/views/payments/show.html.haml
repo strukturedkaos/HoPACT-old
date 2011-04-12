@@ -1,0 +1,11 @@
+h1= @title
+  %hr
+  = semantic_form_for "payment", :remote=>true, do |form|
+  = form.inputs do
+    = form.input :routine_id
+  - form.buttons do
+    = form.commit_button
+
+  #workout-notice
+  #workout
+

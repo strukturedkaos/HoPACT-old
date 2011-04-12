@@ -1,0 +1,14 @@
+class PaymentsController < ApplicationController
+
+  def show
+
+    @title = "Payments By Given Home Cost"
+    
+#    @principal_interest = 
+#    @prop_insurance = 
+#    @total_home_cost = 
+#    @piti = 
+#     
+  end
+  
+end

@@ -13,6 +13,9 @@
 // Import formtastic module
 @import "formtastic/formtastic_base";
 
+// Import grid
+//@import "blueprint/grid";
+
 // To generate css equivalent to the blueprint css but with your
 // configuration appslied, uncomment:
 // @include blueprint
@@ -37,41 +40,6 @@
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
-
-form.formtastic {
-  @include formtastic(510px,100px,400px,8px,"right","left")
-}
-
-form {
-  @include bold-labels;
-}
-
-.stack {
-  @include stack-form(100%,92%,3%);
-  &.buttons-right {
-    @include stack-form(100%,92%,3%,"buttons-right"); }
-}
-
-.float-left {
-  @include float-form-left(100%,20%,72%,2%);
-  &.buttons-right {
-    @include float-form-left(100%,20%,72%,2%,"buttons-right"); }
-}
-
-
-.float-right {
-  @include float-form-right(100%,20%,72%,2%); 
-  &.buttons-right {
-    @include float-form-right(100%,20%,72%,2%,"buttons-right"); }
-}
-
-.float-right, .float-left, .stack {
-  &.input-float {
-    @include float-inputs; }
-  &.input-grid {
-    @include grid-inputs(200px); }
-}
-
 
 body.bp {
   @include blueprint-typography(true);
@@ -125,13 +93,16 @@ body.two-col {
   font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.429;
   text-align: left;
+
   #container {
-    //@include showgrid;
+    @include showgrid;
     //background-color: white;  
-    @include container; }
+    @include container;  }
+
   header, footer {
   //  background-color: #efe;
     @include column($blueprint-grid-columns); }
+  
   nav {
   // 16 - 1 = 15 columns
   $nav-columns: ceil(2 * $blueprint-grid-columns / 3 - 1);
@@ -140,6 +111,7 @@ body.two-col {
 
   // 5px rounded border
   @include rounded;
+  
   
   background: #000305;
 	font-size: 1.143em;
@@ -197,4 +169,18 @@ body.two-col {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
-    } }
+    
+    #payment_form {
+      $payment-columns: ceil(12);
+      @include column($payment-columns);
+      @include rounded;
+      @include prepend(6);      
+      @include append(6);            
+      padding: 10px;
+      //margin: 0 40px 0 0;
+      border: 1px solid #E4E4E4;
+      background-color: gray;  
+      
+    }  
+  } 
+}

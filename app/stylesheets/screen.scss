@@ -18,7 +18,7 @@
 
 // To generate css equivalent to the blueprint css but with your
 // configuration appslied, uncomment:
-// @include blueprint
+// @include blueprint;
 
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint
@@ -95,7 +95,7 @@ body.two-col {
   text-align: left;
 
   #container {
-    @include showgrid;
+    //@include showgrid;
     //background-color: white;  
     @include container;  }
 
@@ -175,11 +175,11 @@ body.two-col {
       @include column($payment-columns);
       @include rounded;
       @include prepend(6);      
-      @include append(6);            
-      padding: 10px;
+      @include append(6);
+      @include last;            
       //margin: 0 40px 0 0;
-      border: 1px solid #E4E4E4;
-      background-color: gray;  
+//      border: 1px solid #E4E4E4;
+//      background-color: gray;  
       
     }  
   } 

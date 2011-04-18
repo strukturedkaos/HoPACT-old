@@ -1,20 +1,20 @@
 #content
   %h1= @title
-  %hr
   #payment_form
-    - semantic_form_for "payment", :remote=>true, do |form|
-      - form.inputs do
-        = form.input :total_home_cost, :label=>"Total Home Cost", :number => true
-        = form.input :property_tax_rate, :label=>"Property Tax Rate", :number => true
-        = form.input :home_insurance_rate, :label=>"Home Insurance Rate", :number => true    
-        = form.input :loan_length, :label=>"Length of Loan", :number => true
-        = form.input :down_payment, :label=>"Down Payment", :number => true
-        = form.input :annual_income, :label=>"Annual Income", :number => true
-        = form.input :monthly_debt, :label=>"Monthly Debt", :number => true
+    = semantic_form_for "payment", :remote=>true, do |form|
+      = form.inputs do
+        = form.input :total_home_cost, :label=>"Total Home Cost ($)", :number => true
+        = form.input :property_tax_rate, :label=>"Property Tax Rate (%)", :number => true
+        = form.input :home_insurance_rate, :label=>"Home Insurance Rate (%)", :number => true    
+        = form.input :interest_rate, :label=>"Interest Rate (%)", :number => true         
+        = form.input :loan_length, :label=>"Length of Loan (years)", :number => true
+        = form.input :down_payment, :label=>"Down Payment ($)", :number => true
+        = form.input :annual_income, :label=>"Annual Income ($)", :number => true
+        = form.input :monthly_debt, :label=>"Monthly Debt ($)", :number => true
         = form.input :rain_months, :label=>"Months of Rain", :required=> false, :number => true      
-        = form.input :cash_buffer, :label=>"Extra Cash Buffer", :required=> false, :number => true                        
-        = form.input :furnish_allowance, :label=>"Furnishings Allowance", :required=> false, :number => true      
-      - form.buttons do
+        = form.input :cash_buffer, :label=>"Extra Cash Buffer ($)", :required=> false, :number => true                        
+        = form.input :furnish_allowance, :label=>"Furnishings Allowance ($)", :required=> false, :number => true      
+      = form.buttons do
         = form.commit_button
     
     

@@ -55,12 +55,16 @@ ActiveRecord::Schema.define(:version => 20110412170206) do
     t.decimal  "interest_rate",           :precision => 3,  :scale => 2
     t.decimal  "buydwn_amt",              :precision => 10, :scale => 2
     t.string   "pmi_needed"
+    t.decimal  "pmi_percentage",          :precision => 3,  :scale => 2
+    t.decimal  "monthly_pmi_cost",        :precision => 10, :scale => 2
     t.decimal  "piti",                    :precision => 10, :scale => 2
+    t.decimal  "total_home_value",        :precision => 20, :scale => 2
     t.decimal  "principal_interest",      :precision => 10, :scale => 2
     t.decimal  "prop_insurance",          :precision => 10, :scale => 2
     t.decimal  "mortgage_insurance",      :precision => 10, :scale => 2
     t.decimal  "house_monthly_debt",      :precision => 10, :scale => 2
     t.decimal  "closing_costs",           :precision => 10, :scale => 2
+    t.decimal  "rainy_day_fund",          :precision => 10, :scale => 2
     t.decimal  "total_debt_income_ratio", :precision => 2,  :scale => 0
     t.decimal  "suggested_cash",          :precision => 10, :scale => 2
     t.datetime "created_at"

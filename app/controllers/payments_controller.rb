@@ -7,7 +7,9 @@ class PaymentsController < ApplicationController
     @payment = Payment.new(params[:payment])
     @yearly = @payment.interest_rate / 1200
     @length = @payment.loan_length / 12
-    @exp =  ((1 + @yearly) ** 30)
+    @loan_length = @payment.loan_length * 12
+    #=(B5-B12)*((B9/1200)*POWER(1+(B9/1200),B10*12))/(POWER(1+(B9/1200),B10*12)-1)
+    @exp =  ((1 + @yearly) ** @loan_length.to_i)
     @numerator = (@payment.total_home_cost - @payment.down_payment) * (@yearly * @exp)
     @denominator = (@exp - 1)
     # =(B5-B10)*((B8/1200)*POWER(1+(B8/1200),B9*12))/(POWER(1+(B8/1200),B9*12)-1)
@@ -16,14 +18,14 @@ class PaymentsController < ApplicationController
     
     @down_ratio = @payment.down_payment / @payment.total_home_cost
     # If down payment / total home cost is >= 20%
-    if @down_ratio >= 0.2
+    if (@down_ratio >= 0.2 && @payment.mortgage_type == "Conventional")
       @payment.pmi_needed = "N"   # pmi is not needed
     else
       @payment.pmi_needed = "Y" # pmi is needed
     end
     
     # Set PMI Percentage
-    if @payment.pmi_needed = "N"
+    if @payment.pmi_needed = "N" 
       @payment.pmi_percentage = 0
       @payment.monthly_pmi_cost = 0
     elsif (1-@down_ratio) > 0.95
@@ -44,11 +46,11 @@ class PaymentsController < ApplicationController
     @payment.piti = @payment.principal_interest + @payment.prop_insurance
     @payment.total_home_value = @payment.total_home_cost    
     @payment.house_monthly_debt = @payment.piti + @payment.monthly_pmi_cost + @payment.monthly_debt
-    @payment.closing_costs = @payment.total_home_value * 0.02
-    @payment.rainy_day_fund = @payment.rain_months * (@payment.house_monthly_debt + @payment.cash_buffer)
+    @payment.closing_costs = @payment.total_home_value * 0.035
+    @payment.rainy_day_fund = @payment.rain_months * (@payment.house_monthly_debt + @payment.cash_buffer + @payment.monthly_hoa)
     @payment.total_debt_income_ratio = 100 * @payment.house_monthly_debt / (@payment.annual_income/12)
     @payment.suggested_cash = @payment.closing_costs + @payment.rainy_day_fund + @payment.furnish_allowance + 
-                              @payment.down_payment + @payment.monthly_debt
+                              @payment.down_payment + @payment.monthly_debt - @payment.closing_concession
                               
     if @payment.save
       flash[:success] = "Payments Entry Created!"
